@@ -1,0 +1,26 @@
+---
+title: "Analiza danych w języku R"
+output:
+  html_document:
+    df_print: paged
+---
+
+Przydatne linki:\
+[https://plot.ly/r/](https://plot.ly/r/) \
+[https://images.plot.ly/plotly-documentation/images/r_cheat_sheet.pdf](https://images.plot.ly/plotly-documentation/images/r_cheat_sheet.pdf)
+
+```{r}
+if (!require('plotly')) install.packages('plotly')
+library(plotly)
+library(tidyverse)
+```
+
+# Porównanie składni ggplot vs plotly ----
+
+```{r}
+data(mtcars)
+```
+
+# Customizacja wykresów plotly ----
+
+# Generowanie plotly z ggplot2 ----

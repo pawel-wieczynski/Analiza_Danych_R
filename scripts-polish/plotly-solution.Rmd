@@ -1,0 +1,97 @@
+---
+title: "Analiza danych w języku R"
+output: html_notebook
+---
+
+Przydatne linki:\
+[https://plot.ly/r/](https://plot.ly/r/) \
+[https://images.plot.ly/plotly-documentation/images/r_cheat_sheet.pdf](https://images.plot.ly/plotly-documentation/images/r_cheat_sheet.pdf)
+
+```{r}
+if (!require('plotly')) install.packages('plotly')
+library(plotly)
+library(tidyverse)
+```
+
+```{r}
+data(mtcars)
+```
+
+# Porównanie składni ggplot vs plotly ----
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point()
+
+plot_ly(mtcars, x = ~wt, y = ~mpg, type = 'scatter', mode = 'markers')
+```
+
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point(aes(color = as.factor(gear)), size = 3)
+
+plot_ly(mtcars, x = ~wt, y = ~mpg, color = ~as.factor(gear), type = 'scatter', mode = 'markers', size = 3)
+```
+
+```{r}
+ggplot(mtcars, aes(x = rownames(mtcars), y = mpg)) + geom_col()
+
+plot_ly(mtcars, x = rownames(mtcars), y = ~mpg, type = 'bar')
+```
+
+# Customizacja wykresów plotly ----
+```{r}
+dane = read.csv('netflix-dataset.csv', encoding = 'UTF-8')
+```
+
+```{r}
+plot_ly(dane, x = ~IMDb.Score, type = "histogram", 
+        marker = list(color = "blue", line = list(color = "red", width = 0.5)), 
+        opacity = 0.7)
+
+plot_ly(dane, x = ~IMDb.Score, type = "histogram", 
+        color = ~Series.or.Movie) %>% 
+  layout(xaxis = list(title = "Ocena filmu"),
+         yaxis = list(title = "Ilosc ocen"),
+         legend = list(title = list(text = "<b>Film czy serial</b>"),
+                       orientation = "h",
+                       x = 0.5,
+                       y = -0.2),
+         title = list(text = "<b>Histogram ocen filmow</b>", x = 0.5),
+         font = list(family = "Calibri")) 
+```
+
+```{r}
+plot_ly(dane, x = ~as.factor(Runtime), type = "histogram", color = ~Runtime) %>%
+  layout(title = "Histogram with Colored Bars", xaxis = list(title = "Runtime"), yaxis = list(title = "Count"))
+```
+
+```{r}
+plot_ly(dane, x = ~IMDb.Score, y = ~IMDb.Votes, type = "scatter", mode = "markers", color = ~Series.or.Movie)
+```
+
+```{r}
+plot_ly(dane, x = ~Series.or.Movie, y = ~IMDb.Score, type = 'box')
+```
+
+```{r}
+plot_ly(data = gatunki, x = ~IMDb.Score.Average, y = ~IMDb.Votes.Average, type = "scatter", mode = "markers+text", size = ~Count, text = ~Gatunek, color = ~Gatunek, showlegend = FALSE)
+
+ggplot(gatunki, aes(IMDb.Score.Average, IMDb.Votes.Average, label = Gatunek)) +
+  geom_point(aes(color = Gatunek, size = Count)) +
+  geom_text_repel() +
+  theme(legend.position = 'none')
+```
+
+# Generowanie plotly z ggplot2 ----
+```{r}
+p = ggplot(dane, aes(x = Runtime)) +
+  geom_bar(aes(fill = Runtime)) +
+  scale_x_discrete(
+    limits = c('< 30 minutes'
+               ,'30-60 mins'
+               ,'1-2 hour'
+               ,'> 2 hrs')
+    ,labels = function(x) str_wrap(x, width = 8)
+  ) 
+
+p
+ggplotly(p)
+```
