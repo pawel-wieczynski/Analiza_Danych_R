@@ -1,4 +1,4 @@
-Skrypty to zajęć *Analiza danych w języku R*, które prowadzę na studiach podyplomowych WSB. Po raz pierwszy zajęcia prowadziłem wiosną 2023.
+Skrypty do zajęć *Analiza danych w języku R*, które prowadzę na studiach podyplomowych WSB. Po raz pierwszy zajęcia prowadziłem wiosną 2023.
 
 ---
 
