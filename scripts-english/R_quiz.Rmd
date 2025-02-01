@@ -1,0 +1,365 @@
+---
+title: "R - Quiz"
+author: "null"
+output:
+  pdf_document: default
+  html_notebook: default
+  word_document: default
+---
+
+
+### Question 1 
+
+What function should I use to load a csv file into a data frame?
+
+```{r}
+read.csv()
+```
+
+1. read.csv() 
+2. readCsv() 
+3. read_CSV() 
+4. csv.read() 
+
+
+### Question 2
+
+Select a library for data transformation (data wrangling).
+
+```{r, include=FALSE, echo=FALSE, warning=FALSE}
+dplyr::
+tidyr::
+```
+
+1. ggplot2
+2. plotly
+3. dplyr
+4. xlsx
+
+### Question 3 
+
+What will be the result of calling the following function?
+
+```{r message=FALSE, warning=FALSE, eval=TRUE}
+
+SampleFunction <- function(a, b) {
+ a <- 1
+ c <- a + b
+ 
+ return(c)
+
+}
+
+SampleFunction(a= 2, b = 3)
+
+```
+
+
+1. 4
+2. 5
+3. 6
+4. 7
+
+### Question 4 
+
+Which of the following libraries is not used to create graphs?
+
+1. ggplot2
+2. plotly
+3. dplyr
+4. None of the above.
+
+### Question 5
+
+What will be the result of executing the following line of code?
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+x <- c("a", "b", "c", "d")
+y <- c("w", "x", "y", "z")
+
+
+paste(x, y, sep="%%")
+```
+
+1. "a;w","b;x","c;y","d;z"
+2. "a%%w%%b%%x%%c%%y%%d%%z"
+3. "a,w,b,x,c,y,d,z"
+4. "a%%w" "b%%x" "c%%y" "d%%z"
+
+
+### Question 6 
+
+What code should be entered to select a record from the 2nd row and 3rd column of the data frame below?
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+
+SampleDF <- data.frame(City = c("Gdansk", "Gdynia", "Sopot", "Gdansk", "Gdynia", "Sopot", "Sopot", "Gdansk"),
+                  Sales = c(500, 400, 200, 400, 200, 250, 200, 100 ),
+                  Employees = c(6, 4, 1, 6, 4, 1, 2, 3 ))
+
+SampleDF[2,3]
+
+```
+
+
+1. SampleDF[,2]
+2. Df1[2,3]
+3. SampleDF[2,3]
+4. SampleDF[3,2]
+
+### Question 7 
+
+What type of graph will the following code produce?
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+library(ggplot2)
+library(datasets)
+
+stocks <- data.frame(EuStockMarkets)
+
+plot1<- ggplot(data = stocks,
+                        mapping = aes( x = FTSE,
+                                       y = DAX))
+
+plot2 <- plot1 + geom_point()
+```
+
+1. Scatter plot
+2. Line plot
+3. Histogram
+4. Map
+
+### Question 8 
+
+What type(s) of data will/will be stored in the vector below?
+
+```{r}
+SampleVec <- c(1, "bla", TRUE)
+class(SampleVec)
+```
+
+1. numeric, character, logical
+2. character
+3. numeric, character
+4. numeric
+
+### Question 9
+
+What is the '$' character used for in data frames?
+```{r}
+SampleDF$City
+```
+
+1. Referring to individual lines.
+2. Build functions.
+3. Building relationships between the lines.
+4. Referring to individual columns.
+
+### Question 10 
+
+Which of the following lines of code will select the record(s) where sales are greater than 200 and less than 400. 
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+
+SampleDF <- data.frame(City = c("Gdansk", "Gdynia", "Sopot", "Gdansk", "Gdynia", "Sopot", "Sopot", "Gdansk"),
+                  Sales = c(500, 400, 200, 400, 200, 250, 200, 100 ),
+                  Employees = c(6, 4, 1, 6, 4, 1, 2, 3 ))
+SampleDF %>% filter(Sales > 200 & Sales < 400)
+```
+
+
+1. SampleDF %>% filter(Sales > 200 & Sales < 400)
+2. SampleDF %>% filter(Sales > 200 | Sales < 400)
+3. SampleDF %>% filter(Sales >= 200 & Sales =< 400)
+4. SampleDF %>% filter(Sales > 200 %and% Sales < 400)
+
+
+### Question 11 
+
+For the vector below, specify which code will not only call "MO" and "TU".
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+t <- c("MO", "TU", "WE", "TH", "FR", "SA", "SU")
+
+t[c(1,2)]
+t[c(-3,-4,-5,-6,-7)]
+t[t=="MO" | t=="TU"]
+
+t[c(-7:-5)]
+```
+
+
+1. t[c(1,2)] 
+2. t[c(-3,-4,-5,-6,-7)] 
+3. t[t=="MO" | t=="TU"]
+4. t[c(-7:-5)]
+
+
+### Question 12 
+
+If the following columns are available in the data frame:
+"name", "year", "month", "day", "hour"
+
+What will the code below trigger?
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+library(datasets)
+
+data(storms)
+storms %>% mutate(Date = paste(year, month, day, sep= "-")) 
+
+```
+
+1. The lines that are in the format "yyyy-mm-dd" will be selected.
+2. It will replace the current "Date" column, which will consist of the year, month and day.
+3. It will create a new "Date" column, which will consist of the year, month and day.
+4. None of the above.
+
+### Question 13
+
+What will be the result of running the following lines of code?
+
+```{r}
+library(dplyr)
+
+day = c(1, 1, 2, 2, 3, 3)
+hour = c(8, 16, 8, 16, 8, 16)
+profit = c(100, 200, 50, 60, NA, NA)
+shop.data = data.frame(day, hour, profit)
+
+
+shop.data %>% mutate(profit= ifelse(is.na(profit), median(profit, na.rm=TRUE), profit))
+
+
+```
+
+1. All records in the profit column will be converted to NA.
+2. NA records will be replaced with the arithmetic mean of the entire profit column.
+3. NA records will be replaced with the median value of the entire profit column.
+4. Records that are not NA will be replaced with the median value of the entire profit column.
+
+### Question 14
+
+What will the following lines of code do?
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+library(ggplot2)
+library(datasets)
+
+stocks <- data.frame(EuStockMarkets)
+
+plot1 <- ggplot(data = stocks, 
+                aes(DAX, FTSE ))
+
+
+plot1
+```
+
+
+1. A complete chart will appear in the plot tab (background with scale, line chart and signed axes).
+2. An outline of the chart will appear in the plots tab (background with a scale and labeled axes).
+3. A complete graph will appear in the plot tab (background with scale, scatter plot and signed axes).
+4. Nothing will be displayed.
+
+
+### Question 15
+
+What will appear on the screen (in the console) after running the following line of code:
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+
+for ( i in  10 : 1) {
+  print(i)
+}
+
+
+
+```
+
+
+1. Vector filled with values from 1 to 10.
+2. Vector filled with values from 10 to 1.
+3. 10 individual elements (single element vectors) with values from 1 to 10.
+4. 10 individual elements (one-element vectors) with values from 10 to 1.
+
+
+### Question 16
+
+What function should be inserted in "__" to obtain the "strong wind" wind category in the "Cat1" column when the speed exceeds 20 (km/h).
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+
+
+tst2 <- storms %>%
+  mutate(Cat1 = ifelse(wind > 20, "Strong Wind", "Weak Wind"))
+
+
+
+```
+
+1. if
+2. ifelse
+3. countif
+4. elseif
+
+
+### Question 17
+
+What functions/steps will you use to build summaries (aggregations) for individual cities from the data frame below?
+
+
+```{r}
+library(dplyr)
+SampleDF <- data.frame(City = c("Gdansk", "Gdynia", "Sopot", "Gdansk", "Gdynia", "Sopot", "Sopot", "Gdansk"),
+                  Sales = c(500, 400, 200, 400, 200, 250, 200, 100 ),
+                  Employees = c(6, 4, 1, 6, 4, 1, 2, 3 ))
+
+SampleDF %>% group_by(City) %>% summarise(Sum = sum(Sales), Average = mean(Sales))
+
+```
+
+1. SampleDF %>% group_by(City) %>% summarise(Sum = sum(Sales), Average = mean(Sales))
+2. SampleDF %>% summarise(Sum = sum(Sales), Average = mean(Sales)) %>% group_by(City)
+3. TestDF %>% group_by(City) %>% summarise(Sum = sum(Sales), Average = mean(Sales))
+4. TestDF %>% summarise(Sum = sum(Sales), Average = mean(Sales))
+
+### Question 18
+
+Which of the following codes will return an error?
+
+```{r}
+mtcars %>% filter(cyl == 6 && disp >= 160)
+mtcars %>% filter(cyl == 6 || disp >= 160)
+mtcars %>% filter(cyl = 6 | disp >= 160)
+mtcars %>% filter(cyl == 6 | disp >= 160)
+```
+
+1. mtcars %>% filter(cyl == 6 && disp >= 160)
+2. mtcars %>% filter(cyl == 6 || disp >= 160)
+3. mtcars %>% filter(cyl = 6 | disp >= 160)
+4. mtcars %>% filter(cyl == 6 | disp >= 160)
+
+### Question 19
+
+Which command will create a box plot?
+
+1. geom_box()
+2. geom_plot()
+3. geom_boxplot()
+4. geom_jitter()
+
+### Question 20
+
+What will be the result of the following logical operation?
+
+(5 > 3) & !(3 == 4)
+```{r}
+(5 > 3) & !(3 == 4)
+```
+
+
+1. TRUE
+2. FALSE
+3. vector (TRUE, TRUE)
+4. vector (TRUE, FALSE)
+
